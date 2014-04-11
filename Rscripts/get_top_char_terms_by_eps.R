@@ -48,8 +48,10 @@ aux_top_chars = rownames(top_chars_by_eps)
 # identify top characters in episode IV
 aux_chars4 = chars4 %in% aux_top_chars
 top_chars_eps4 = unique(chars4[aux_chars4])
+
 # empty vector to collect dialogues of top chars
 diag4_top_chars = rep("", length(top_chars_eps4))
+
 # collect dialogues for top characters
 for (i in 1:length(top_chars_eps4))
 {
@@ -72,6 +74,7 @@ diag4_corpus = tm_map(diag4_corpus, stripWhitespace)
 diag4_tdm = TermDocumentMatrix(diag4_corpus)
 dim(diag4_tdm)
 diag4_tdm = as.matrix(diag4_tdm)
+
 # get top terms for top characters in episode IV
 diag4_top_terms = as.list(1:ncol(diag4_tdm))
 for (j in 1:ncol(diag4_tdm))
@@ -89,8 +92,10 @@ names(diag4_top_terms) = colnames(diag4_tdm)
 # identify top characters in episode V
 aux_chars5 = chars5 %in% aux_top_chars
 top_chars_eps5 = unique(chars5[aux_chars5])
+
 # empty vector to collect dialogues of top chars
 diag5_top_chars = rep("", length(top_chars_eps5))
+
 # collect dialogues for top characters
 for (i in 1:length(top_chars_eps5))
 {
@@ -113,6 +118,7 @@ diag5_corpus = tm_map(diag5_corpus, stripWhitespace)
 diag5_tdm = TermDocumentMatrix(diag5_corpus)
 dim(diag5_tdm)
 diag5_tdm = as.matrix(diag5_tdm)
+
 # get top terms for top characters in episode V
 diag5_top_terms = as.list(1:ncol(diag5_tdm))
 for (j in 1:ncol(diag5_tdm))
@@ -130,8 +136,10 @@ names(diag5_top_terms) = colnames(diag5_tdm)
 # identify top characters in episode VI
 aux_chars6 = chars6 %in% aux_top_chars
 top_chars_eps6 = unique(chars6[aux_chars6])
+
 # empty vector to collect dialogues of top chars
 diag6_top_chars = rep("", length(top_chars_eps6))
+
 # collect dialogues for top characters
 for (i in 1:length(top_chars_eps6))
 {
@@ -154,6 +162,7 @@ diag6_corpus = tm_map(diag6_corpus, stripWhitespace)
 diag6_tdm = TermDocumentMatrix(diag6_corpus)
 dim(diag6_tdm)
 diag6_tdm = as.matrix(diag6_tdm)
+
 # get top terms for top characters in episode VI
 diag6_top_terms = as.list(1:ncol(diag6_tdm))
 for (j in 1:ncol(diag6_tdm))
@@ -189,6 +198,7 @@ eps = c(rep(4,ntc4), rep(5,ntc5), rep(6,ntc6))
 X = cbind(X, eps)
 # add column names
 colnames(X) = c(paste("x", 1:10, sep=""), "eps")
+X
 
 
 # =====================================================================
@@ -197,8 +207,10 @@ colnames(X) = c(paste("x", 1:10, sep=""), "eps")
 
 # how many top characters
 nc = length(aux_top_chars)
+
 # create list to store results
 top_char_terms10 = as.list(1:nc)
+
 # collect results
 for (i in 1:nc)
 {
@@ -223,7 +235,8 @@ for (i in 1:nc)
   # distribution of top10 terms by episode
   auxdf = data.frame(terms, vals, epis=as.numeric(epis))
   DF = data.frame(char=rep(aux_top_chars[i], 10), term=top10_words, 
-             epIV=rep(0,10), epV=rep(0,10), epVI=rep(0,10))
+             epIV=rep(0,10), epV=rep(0,10), epVI=rep(0,10),
+             stringsAsFactors = FALSE)
   for (k in 1:10)
   {
     where_word <- auxdf[,1] == top10_words[k]
@@ -231,6 +244,7 @@ for (i in 1:nc)
   }
   top_char_terms10[[i]] = DF
 }
+
 
 # =====================================================================
 # Export results in table format to file "top_char_terms.txt"

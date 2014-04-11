@@ -27,6 +27,7 @@ top_chars_by_eps = read.table("top_chars_by_eps.txt")
 
 # top character names (sorted)
 aux_top_chars = rownames(top_chars_by_eps)
+
 # how many top characters
 nc = length(aux_top_chars)
 
@@ -77,7 +78,8 @@ lwds = 20 * w1 / max(w1)
 cols = hsv(h=0, s=w2/max(w2), v=0, alpha=0.6*w2/max(w2))
 
 # color bands (of episodes VI, V, IV)
-col.bands = c("#4EA3CD", "#4E70CD", "#5E4ECD")
+# col.bands = c("#4EA3CD", "#4E70CD", "#5E4ECD")
+col.bands = c("#C7F464", "#4ECDC4", "#6d849c")
 
 # magnification factor of terms in bar-charts
 # (I went through a large trial-and-error process in order

@@ -137,7 +137,7 @@ arcBandBars <- function(
   if (is.null(cex)) {
     cex = nf
     cex[nf < 0.01] = 0.01
-    cex = cex * 5
+    cex = cex * 9
   }
   # add node names
   text(centers, 0, nodes, cex=cex, adj=c(0.5,0), col=col.nodes)

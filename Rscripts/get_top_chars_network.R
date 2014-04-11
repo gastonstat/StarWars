@@ -22,9 +22,9 @@ require(tm)
 require(igraph)
 
 # import data tables
-Ep4 = read.table("SW_EpisodeIV.txt")
-Ep5 = read.table("SW_EpisodeV.txt")
-Ep6 = read.table("SW_EpisodeVI.txt")
+Ep4 = read.table("SW_EpisodeIV.txt", stringsAsFactors = FALSE)
+Ep5 = read.table("SW_EpisodeV.txt", stringsAsFactors = FALSE)
+Ep6 = read.table("SW_EpisodeVI.txt", stringsAsFactors = FALSE)
 
 # select dialogues
 diags4 = Ep4[,2]
@@ -75,6 +75,7 @@ names(top_char_diags) = aux_top_chars
 
 # get corpus
 diag_corpus = Corpus(VectorSource(top_char_diags))
+
 # apply some text transformations
 diag_corpus = tm_map(diag_corpus, tolower)
 diag_corpus = tm_map(diag_corpus, removeWords, 
@@ -193,7 +194,9 @@ title("Preliminary arc-diagram", cex.main=0.9)
 
 # arc-diagram with pie charts on nodes
 # color bands (of episodes VI, V, IV)
-col.pies = c("#C7F464", "#4ECDC4", "#556270")
+#col.pies = c("#C7F464", "#4ECDC4", "#556270")
+col.pies = c("#C7F464", "#4ECDC4", "#6d849c")
+
 # arc-diagram with pie charts
 arcPies(edges1, top_chars_by_eps, cex=1, col.pies=col.pies, 
          lwd=lwds, col=cols, mar=c(7,1,4,1))
@@ -212,7 +215,8 @@ legend(x=0.9, y=0.5, title="Episodes", text.col="gray65", cex=0.8,
 
 # arc-diagram with bands on nodes
 # color bands (of episodes VI, V, IV)
-col.bands = c("#C7F464", "#4ECDC4", "#556270")
+#col.bands = c("#C7F464", "#4ECDC4", "#556270")
+col.bands = c("#C7F464", "#4ECDC4", "#6d849c")
 # arc-diagram with bands
 arcBands(edges1, top_chars_by_eps, col.bands=col.bands, 
          lwd=lwds, col=cols, mar=c(4,1,4,1))
